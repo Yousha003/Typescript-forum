@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -51,8 +51,10 @@ const ThreadDetailPage: React.FC = () => {
     });
 
     const pathSegments = pathname?.split("/");
-    const threadId = pathSegments ? pathSegments[pathSegments.length - 1] : null;
-    
+    const threadId = pathSegments
+      ? pathSegments[pathSegments.length - 1]
+      : null;
+
     if (threadId) {
       const fetchThread = async () => {
         try {
@@ -117,7 +119,9 @@ const ThreadDetailPage: React.FC = () => {
   const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const pathSegments = pathname?.split("/");
-    const threadId = pathSegments ? pathSegments[pathSegments.length - 1] : null;
+    const threadId = pathSegments
+      ? pathSegments[pathSegments.length - 1]
+      : null;
     if (threadId && newComment.trim() && currentUserUID) {
       try {
         const newCommentData = {
@@ -177,9 +181,9 @@ const ThreadDetailPage: React.FC = () => {
       <Header />
       <div className="container mx-auto p-6 max-w-4xl">
         {thread ? (
-          <div className="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8 mb-8">
+          <div className="bg-white shadow-xl rounded-lg p-8 mb-8">
             <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold text-purple-700 dark:text-purple-300 uppercase">
+              <h1 className="text-2xl font-bold text-black">
                 {thread.title}
               </h1>
               {isLoggedIn && thread.creator === currentUserUID && (
@@ -191,86 +195,105 @@ const ThreadDetailPage: React.FC = () => {
                       });
                       setIsLocked(!isLocked);
                     } catch (error) {
-                      console.error("Error updating thread lock status:", error);
+                      console.error(
+                        "Error updating thread lock status:",
+                        error
+                      );
                     }
                   }}
                   className={`p-3 rounded-md text-white font-semibold ${
-                    isLocked ? "bg-red-500 hover:bg-red-600" : "bg-green-500 hover:bg-green-600"
+                    isLocked ? "bg-blue-500 " : "bg-red-500 "
                   } transition-all`}
                 >
-                  {isLocked ? "Unlock Thread" : "Lock Thread"}
+                  {isLocked ? "Låst" : "Upplåst"}
                 </button>
               )}
             </div>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 whitespace-pre-wrap">
+            <p className="text-lg text-black mt-4 whitespace-pre-wrap">
               {thread.description}
             </p>
-            <div className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-              <p>Created by: <span className="font-semibold text-indigo-600 dark:text-indigo-400">{creatorName}</span></p>
-              <p>Created at: {new Date(thread.creationDate).toLocaleString()}</p>
-              <p>Category: <span className="font-semibold">{thread.category}</span></p>
+            <div className="text-sm text-gray-500 mt-4">
+              <p>
+                Skapad av:{" "}
+                <span className="font-semibold text-black">
+                  {creatorName}
+                </span>
+              </p>
+
+              <p>
+                Kategori:{" "}
+                <span className="font-semibold">{thread.category}</span>
+              </p>
+
+              <p>
+                Datum och tid: {new Date(thread.creationDate).toLocaleString()}
+              </p>
             </div>
           </div>
         ) : (
-          <p>Loading thread...</p>
+          <p>Laddar</p>
         )}
 
         <div className="mt-8">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Comments</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Kommentarer</h2>
           {isLoggedIn && !isLocked && (
             <form onSubmit={handleCommentSubmit} className="mb-6">
               <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-white transition-all"
-                placeholder="Add a comment..."
+                className="w-full p-3 border  rounded-lg shadow focus:outline-none focus:ring-2  transition-all"
+                placeholder="Kommentera här..."
                 required
               />
               <button
                 type="submit"
-                className="mt-4 bg-indigo-600 text-white px-6 py-3 rounded-md shadow-md hover:bg-indigo-700 transition-all"
+                className="mt-4 bg-red-400 text-white border  p-3 rounded-lg hover:bg-blue-700 transition"
               >
-                Submit Comment
+                Skicka
               </button>
             </form>
           )}
-          
+
           {sortedComments.length > 0 ? (
             sortedComments.map((comment) => (
               <div
                 key={comment.id}
-                className={`bg-gray-100 dark:bg-gray-700 shadow-lg rounded-lg p-6 mb-6 relative ${
-                  comment.id === markedAnswerId ? "border-4 border-green-600" : ""
+                className={`bg-gray-100 shadow-lg rounded-lg p-6 mb-6 relative ${
+                  comment.id === markedAnswerId
+                    ? "border-4 border-green-600"
+                    : ""
                 }`}
               >
                 <div className="flex justify-between">
-                  <p className="text-sm text-gray-500 dark:text-gray-300 font-semibold">
-                    Comment by: {usernames[comment.creator] || "Unknown"}
+                  <p className="text-sm text-gray-500 font-semibold">
+                    Kommenterad av: {usernames[comment.creator] || "Unknown"}
                   </p>
                   {isLoggedIn && thread?.creator === currentUserUID && (
                     <button
                       onClick={() => handleMarkAsAnswer(comment.id)}
-                      className="text-blue-500 dark:text-blue-300 text-xs hover:underline"
+                      className="text-red-500 text-xs hover:underline"
                     >
-                      {comment.id === markedAnswerId
-                        ? "Unmark as Answer"
-                        : "Mark as Answer"}
+                      {comment.id === markedAnswerId ? "Avmarkera" : "Markera"}
                     </button>
                   )}
                 </div>
-                <p className="mt-2 text-gray-700 dark:text-gray-100 whitespace-pre-wrap">{comment.content}</p>
-                <p className="mt-4 text-gray-500 dark:text-gray-400 text-xs">
+                <p className="mt-2 text-black whitespace-pre-wrap">
+                  {comment.content}
+                </p>
+                <p className="mt-4 text-black text-xs">
                   {comment.createdAt.toDate().toLocaleString()}
                 </p>
                 {comment.id === markedAnswerId && (
-                  <p className="text-green-500 text-xs mt-2">Marked as Top Comment</p>
+                  <p className="text-green-500 text-xs mt-2">Bästa kommentar</p>
                 )}
                 <hr className="mt-4" />
                 <CommentOnComment />
               </div>
             ))
           ) : (
-            <p className="text-gray-500 dark:text-gray-300">{isLocked ? "This thread is locked." : "No comments yet."}</p>
+            <p className="text-black">
+              {isLocked ? "Låst." : "Inga kommentarer än."}
+            </p>
           )}
         </div>
       </div>

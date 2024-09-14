@@ -41,7 +41,7 @@ function ListThreads() {
 
   return (
     <div>
-      <h2 className='font-bold text-xl pb-3'>Latest Threads</h2>
+      <h2 className='font-bold text-xl pb-3'>Senaste</h2>
       {threads.length > 0 ? (
         <ul>
           {threads.map(thread => (
@@ -52,10 +52,9 @@ function ListThreads() {
                   <h2 className='font-semibold flex-1 dark:text-black text-lg'>
                     {thread.title}
                   </h2>
-                  <span className='bg-gray-700 text-white px-2 py-1 text-sm rounded-md'>{thread.category}</span>
                 </div>
                 <p className='text-sm text-gray-500'>
-                  Posted by {users[thread.creator]?.userName || 'Unknown'} at {new Intl.DateTimeFormat('sv-SE', {
+                  Publicerad av {users[thread.creator]?.userName || 'Unknown'} {new Intl.DateTimeFormat('sv-SE', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -70,7 +69,7 @@ function ListThreads() {
           ))}
         </ul>
       ) : (
-        <p>Loading...</p>
+        <p>Laddar</p>
       )}
     </div>
   );

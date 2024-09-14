@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 226, 250, 255;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 255, 255; /* Changed to white */
+  --background-end-rgb: 255, 255, 255;   /* Changed to white */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,21 +16,7 @@
   }
 }
 
-:root {
-  --bg-color: skyblue;
-  --text-color: black;
-}
 
-.dark {
-  --bg-color: black;
-  --text-color: white;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s; 
-}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

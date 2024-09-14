@@ -60,53 +60,55 @@ function CreateThreadPage() {
     <div>
       <Header />
       <div className="container mx-auto p-6 max-w-4xl">
-        <h1 className="text-4xl font-extrabold mb-8 text-center text-gradient bg-gradient-to-r from-purple-500 to-pink-500">
-          Create a New Thread
+        <h1 className="text-4xl font-extrabold mb-8 text-center text-gradient ">
+          Skapa en ny thread
         </h1>
         {creator ? (
-          <form onSubmit={handleSubmit} className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900 shadow-lg rounded-lg p-8 mb-6">
+          <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-8 mb-6">
             <div className="mb-6">
-              <label className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">Title</label>
+              <label className="block text-lg font-semibold text-gray-700 mb-2">Titel</label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 dark:bg-gray-800 dark:text-white transition-all"
-                placeholder="Enter your thread title"
+                className="w-full p-3 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
+                placeholder="Skriv här..."
                 required
               />
             </div>
+
             <div className="mb-6">
-              <label className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">Description</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 dark:bg-gray-800 dark:text-white transition-all"
-                placeholder="Provide a detailed description"
-                required
-                rows={4}
-              />
-            </div>
-            <div className="mb-6">
-              <label className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">Category</label>
+              <label className="block text-lg font-semibold text-gray-700 mb-2">Kategori</label>
               <input
                 type="text"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 dark:bg-gray-800 dark:text-white transition-all"
-                placeholder="e.g. Technology, Health, etc."
+                className="w-full p-3 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
+                placeholder="Skriv här..."
                 required
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-lg font-semibold text-gray-700 mb-2">Beskrivning</label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
+                placeholder="Skriv här..."
+                required
+                rows={4}
               />
             </div>
             <button
               type="submit"
-              className="w-full py-3 bg-purple-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all"
+              className="w-full py-3 bg-black text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all"
             >
-              Create Thread
+              Klar!
             </button>
           </form>
         ) : (
-          <p className="text-red-500 text-center text-lg mb-8">You need to log in to create a New Thread</p>
+          <p className="text-red-500 text-center text-lg mb-8">Logga in för att skapa en thread</p>
         )}
       </div>
     </div>

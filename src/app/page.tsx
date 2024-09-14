@@ -53,15 +53,14 @@ const Page = () => {
   return (
     <main className="container mx-auto px-4 py-6">
       <Header />
-      <div className="p-10 bg-white shadow-lg dark:bg-gray-900 rounded-lg">
-        <h1 className="text-4xl font-extrabold text-center text-gray-900 dark:text-gray-100 pb-10">Welcome to the Forum</h1>
+      <div className="p-10 bg-white shadow-lg rounded-lg">
         
         <div className="flex justify-end">
           <a
             href="/create-thread"
-            className="bg-indigo-600 text-white py-3 px-5 rounded-lg hover:bg-indigo-500 transition dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
+            className="bg-white text-white py-3 px-5 rounded-lg hover:bg-indigo-500 transition dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
           >
-            Create Thread
+            Skapa
           </a>
         </div>
 
@@ -69,23 +68,6 @@ const Page = () => {
           <ListThreads />
         </div>
 
-        <div className="pt-10 text-center">
-          <a
-            href="/threads"
-            className="bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-500 transition dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
-          >
-            View All Threads
-          </a>
-        </div>
-
-        {/* <div className="pt-10 text-center">
-          <button
-            onClick={handleLogout}
-            className="bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-500 transition"
-          >
-            Logout
-          </button>
-        </div> */}
       </div>
     </main>
   );

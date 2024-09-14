@@ -12,9 +12,9 @@ export default function CommentOnComment() {
       />
       <button
         type="submit"
-        className="mt-2 bg-blue-400 text-white  px-4 rounded hover:opacity-65"
+        className="mt-2 bg-black text-white  px-4"
       >
-        Submit
+        Skicka
       </button>
     </div>
   );
